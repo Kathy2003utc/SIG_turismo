@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Turismo;
+
 class TurismoController extends Controller
 {
     /**
@@ -11,7 +13,9 @@ class TurismoController extends Controller
      */
     public function index()
     {
-        //
+        $turismos=Turismo::all();
+
+        return view('turismos.index', compact('turismos'));
     }
 
     /**
