@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Turismo;
 
+
 class TurismoController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class TurismoController extends Controller
     {
         $turismos=Turismo::all();
 
-        return view('turismos.index', compact('turismos'));
+        return view('index', compact('turismos'));
     }
 
     /**
