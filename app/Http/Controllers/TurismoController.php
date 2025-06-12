@@ -19,6 +19,16 @@ class TurismoController extends Controller
         return view('turismos.index', compact('turismos'));
     }
 
+    public function mapa()
+    {
+        //Consulat de clientes en la BDD
+        $turismos=Turismo::all();
+
+        //REnder la vista y pasar datos
+        return view('turismos.mapa',compact('turismos'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      */

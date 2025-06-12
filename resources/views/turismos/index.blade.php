@@ -27,7 +27,7 @@
                     <td>
                     @if ($turismo->imagenes)
                     <img src="{{ Storage::url($turismo->imagenes) }}" alt="Imagen del lugar" width="150">
-                    @endif
+                    
                     No disponible
                     @endif
                     </td>
