@@ -24,12 +24,33 @@
     <label for="longitud" style="font-weight: bold;">Longitud:</label><br>
     <input type="text" name="longitud" id="longitud" style="width: 100%; padding: 8px; margin-bottom: 10px; background-color: #f0f0f0;"><br>
 
-    <div id="mapa_cliente" style="border: 1px solid black; height: 250px; width: 100%; margin-top: 10px; margin-bottom: 20px;"></div>
+    <div id="mapa_turismo" style="border: 1px solid black; height: 250px; width: 100%; margin-top: 10px; margin-bottom: 20px;"></div>
 
     <button type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Guardar</button>
 
     <a href="{{ route('turismos.index') }}" style="margin-left: 20px; text-decoration: none; color: red; font-weight: bold; padding: 10px 20px;">Cancelar</a>
 </form>
+
+<script type="text/javascript">
+    function initMap() {
+        var latitud_longitud = new google.maps.LatLng(-0.9374805, -78.6161327);
+        var mapa = new google.maps.Map(document.getElementById('mapa_turismo'), {
+            center: latitud_longitud,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        var marcador = new google.maps.Marker({
+            position: latitud_longitud,
+            map: mapa,
+            title: "Seleccione la dirección",
+            draggable: true
+        });
+        google.maps.event.addListener(marcador, 'dragend', function (event) {
+            document.getElementById("latitud").value = this.getPosition().lat();
+            document.getElementById("longitud").value = this.getPosition().lng();
+        });
+    }
+</script>
 
 <script>
     $("#imagenes").fileinput({
@@ -41,27 +62,4 @@
     });
 </script>
 
-<script type="text/javascript">
-    function initMap() {
-        var latitud_longitud = new google.maps.LatLng(-0.9374805, -78.6161327);
-        var mapa = new google.maps.Map(document.getElementById('mapa_cliente'), {
-            center: latitud_longitud,
-            zoom: 15,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-
-        var marcador = new google.maps.Marker({
-            position: latitud_longitud,
-            map: mapa,
-            title: "Seleccione la ubicación",
-            draggable: true
-        });
-
-        google.maps.event.addListener(marcador, 'dragend', function (event) {
-            document.getElementById("latitud").value = this.getPosition().lat();
-            document.getElementById("longitud").value = this.getPosition().lng();
-        });
-    }
-    window.onload = initMap;
-</script>
 @endsection

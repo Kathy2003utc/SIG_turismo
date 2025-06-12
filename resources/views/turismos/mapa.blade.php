@@ -27,7 +27,6 @@
                 position:cordenadaCliente,
                 map:mapa,
                 icon:"https://cdn-icons-png.flaticon.com/512/4899/4899329.png",
-                title:"{{$clienteTemporal->apellido}} {{$clienteTemporal->nombre}}",
                 draggable:false
             });
         @endforeach
