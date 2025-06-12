@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('contenido')
+<br><br><br><br>
     <h1>Listado de Lugares Turísticos</h1>
     <a href="{{ route('turismos.create') }}">Agregar Lugar Turístico</a>
     <a href="{{ url('turismos/mapa') }}" class="btn btn-success">Ver Mapa Global</a>
@@ -45,4 +46,5 @@
             @endforeach
         </tbody>
     </table>
+    <br><br>
 @endsection
