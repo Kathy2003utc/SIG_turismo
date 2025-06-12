@@ -16,7 +16,7 @@ class TurismoController extends Controller
     {
         $turismos=Turismo::all();
 
-        return view('index', compact('turismos'));
+        return view('turismos.index', compact('turismos'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TurismoController extends Controller
      */
     public function create()
     {
-        return view('nuevo');
+        return view('turismos.nuevo');
     }
 
     /**
@@ -40,8 +40,8 @@ class TurismoController extends Controller
             'latitud'=>$request->latitud,
             'longitud'=>$request->longitud,
         ];
-        Cliente::create($datos);
-        return redirect()->route('clientes.index');
+        Turismo::create($datos);
+        return redirect()->route('turismos.index');
     }
 
     /**
