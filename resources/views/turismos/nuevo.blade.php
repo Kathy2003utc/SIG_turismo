@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('contenido')
-<form action="{{ route('turismos.store') }}" method="post" style="width: 50%; margin: auto; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+<form action="{{ route('turismos.store') }}" method="post" enctype="multipart/form-data" style="width: 50%; margin: auto; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
     @csrf
     <h1 style="text-align: center; color: #333;">Registrar Nuevo Sitio Turístico</h1>
 
@@ -14,8 +14,9 @@
     <label for="categoria" style="font-weight: bold;">Categoría:</label><br>
     <input type="text" name="categoria" id="categoria" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
 
-    <label for="imagenes" style="font-weight: bold;">URL de Imágenes:</label><br>
-    <input type="text" name="imagenes" id="imagenes" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+    <label for="imagenes" style="font-weight: bold;">Imagen:</label><br>
+    <input type="file" name="imagenes" id="imagenes" accept="image/*" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+
 
     <label for="latitud" style="font-weight: bold;">Latitud:</label><br>
     <input type="text" name="latitud" id="latitud" style="width: 100%; padding: 8px; margin-bottom: 10px; background-color: #f0f0f0;"><br>
@@ -29,6 +30,16 @@
 
     <a href="{{ route('turismos.index') }}" style="margin-left: 20px; text-decoration: none; color: red; font-weight: bold; padding: 10px 20px;">Cancelar</a>
 </form>
+
+<script>
+    $("#imagenes").fileinput({
+        language: "es",
+        allowedFileExtensions: ["png", "jpg", "jpeg"],
+        showCaption: false,
+        dropZoneEnabled: true,
+        showClose: false
+    });
+</script>
 
 <script type="text/javascript">
     function initMap() {

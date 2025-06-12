@@ -6,7 +6,7 @@
     <a href="{{ route('turismos.create') }}">Agregar Lugar Turístico</a>
     <a href="{{ url('turismos/mapa') }}" class="btn btn-success">Ver Mapa Global</a>
 
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table id="tbl_turismo" border="1" cellpadding="8" cellspacing="0">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -25,11 +25,11 @@
                     <td>{{ $turismo->descripcion }}</td>
                     <td>{{ $turismo->categoria }}</td>
                     <td>
-                        @if ($turismo->imagenes)
-                            <img src="{{ asset('storage/' . $turismo->imagenes) }}" alt="Imagen" width="100">
-                        @else
-                            No disponible
-                        @endif
+                    @if ($turismo->imagenes)
+                    <img src="{{ Storage::url($turismo->imagenes) }}" alt="Imagen del lugar" width="150">
+                    @endif
+                    No disponible
+                    @endif
                     </td>
                     <td>{{ $turismo->latitud }}</td>
                     <td>{{ $turismo->longitud }}</td>
@@ -46,5 +46,18 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+          $(document).ready(function() {
+              $('#tbl_turismo').DataTable({
+                  language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                  },
+                  dom: 'Bfrtip',
+                  buttons: [
+                      'copy', 'csv', 'excel', 'pdf', 'print'
+                  ]
+              });
+          });
+        </script>
     <br><br>
 @endsection

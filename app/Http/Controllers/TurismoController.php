@@ -32,17 +32,37 @@ class TurismoController extends Controller
      */
     public function store(Request $request)
     {
-        $datos=[
-            'nombre'=>$request->nombre,
-            'descripcion'=>$request->descripcion,
-            'categoria'=>$request->categoria,
-            'imagenes'=>$request->imagenes,
-            'latitud'=>$request->latitud,
-            'longitud'=>$request->longitud,
-        ];
-        Turismo::create($datos);
-        return redirect()->route('turismos.index');
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required',
+            'categoria' => 'required|string|max:255',
+            'imagenes' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'latitud' => 'required',
+            'longitud' => 'required',
+        ]);
+
+        // Guardar la imagen
+        if ($request->hasFile('imagenes')) {
+            $imagen = $request->file('imagenes');
+            $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+        } else {
+            $rutaImagen = null;
+        }
+
+        // Crear el sitio turístico
+        Turismo::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'categoria' => $request->categoria,
+            'imagenes' => $rutaImagen, // Guarda la ruta del archivo, no la URL directa
+            'latitud' => $request->latitud,
+            'longitud' => $request->longitud,
+        ]);
+
+        return redirect()->route('turismos.index')->with('success', 'Sitio turístico registrado correctamente.');
     }
+
 
     /**
      * Display the specified resource.
