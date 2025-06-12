@@ -2,7 +2,7 @@
 
 @section('contenido')
     <h1>Listado de Lugares Turísticos</h1>
-    <a href="{{ route('turismos.create') }}">Agregar Lugar Turístico</a>
+    <a href="{{ route('nuevo.create') }}">Agregar Lugar Turístico</a>
     <a href="{{ url('turismos/mapa') }}" class="btn btn-success">Ver Mapa Global</a>
 
     <table border="1" cellpadding="8" cellspacing="0">
