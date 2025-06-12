@@ -32,7 +32,16 @@ class TurismoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datos=[
+            'nombre'=>$request->nombre,
+            'descripcion'=>$request->descripcion,
+            'categoria'=>$request->categoria,
+            'imagenes'=>$request->imagenes,
+            'latitud'=>$request->latitud,
+            'longitud'=>$request->longitud,
+        ];
+        Cliente::create($datos);
+        return redirect()->route('clientes.index');
     }
 
     /**
