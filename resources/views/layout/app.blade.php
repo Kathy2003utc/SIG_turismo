@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Pacific - Free Bootstrap 4 Template by Colorlib</title>
+	<title>Turismos FK</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
@@ -72,7 +72,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 		<div class="container">
-			<a class="navbar-brand" href="index.html">Pacific<span>Travel Agency</span></a>
+			<a class="navbar-brand" href="index.html">Pacific<span>Agencia CRUD</span></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="oi oi-menu"></span> Menu
 			</button>
@@ -98,7 +98,7 @@
 				<div class="col-md pt-5">
 					<div class="ftco-footer-widget pt-md-5 mb-4">
 						<h2 class="ftco-heading-2">About</h2>
-						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p>Somos unos estudiantes que empezaron un emprendimiento de Turismo alrededor del Ecuador</p>
 						<ul class="ftco-footer-social list-unstyled float-md-left float-lft">
 							<li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
 							<li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -110,12 +110,12 @@
 					<div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
 						<h2 class="ftco-heading-2">Infromation</h2>
 						<ul class="list-unstyled">
-							<li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
-							<li><a href="#" class="py-2 d-block">General Enquiries</a></li>
-							<li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-							<li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-							<li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-							<li><a href="#" class="py-2 d-block">Call Us</a></li>
+							<li><a href="#" class="py-2 d-block">Pico Katherin</a></li>
+							<li><a href="#" class="py-2 d-block">Trujillo Israel</a></li>
+							<li><a href="#" class="py-2 d-block">Agente Turistico</a></li>
+							<li><a href="#" class="py-2 d-block">Privacidad</a></li>
+							<li><a href="#" class="py-2 d-block">Politicas empresariales</a></li>
+							<li><a href="#" class="py-2 d-block">Llamanos a: 0990960365, 0958615103</a></li>
 						</ul>
 					</div>
 				</div>
