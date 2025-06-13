@@ -46,7 +46,7 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdYzugNC_QlesLopg6J4884TRsBzvusjg&callback=initMap">
     </script>
-	
+
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Arizonia&display=swap" rel="stylesheet">
@@ -192,6 +192,27 @@
             border: 1px solid red;
         }
     </style>
+
+	@if(session('success'))
+	<script>
+		Swal.fire({
+		icon: 'success',
+		title: 'CONFIRMACIÓN',
+		text: "{{ session('success') }}"
+		});
+	</script>
+	@endif
+
+	@if(session('error'))
+	<script>
+		Swal.fire({
+		icon: 'error',
+		title: 'Error',
+		text: "{{ session('error') }}"
+		});
+	</script>
+	@endif
+
 
 </body>
 </html>
