@@ -55,7 +55,7 @@ class TurismoController extends Controller
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
         } else {
             $rutaImagen = null;
         }
@@ -119,7 +119,7 @@ class TurismoController extends Controller
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
             $turismo->imagenes = $rutaImagen;
         }
 

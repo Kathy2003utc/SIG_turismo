@@ -37,11 +37,12 @@
                     <td>{{ $turismo->categoria }}</td>
                     <td>
                         @if ($turismo->imagenes)
-                            <img src="{{ Storage::url($turismo->imagenes) }}" alt="Imagen del lugar" width="150">
+                            <img src="{{ asset('storage/' . $turismo->imagenes) }}" alt="Imagen del lugar" height="80">
                         @else
                             No disponible
                         @endif
                     </td>
+
                     <td>{{ $turismo->latitud }}</td>
                     <td>{{ $turismo->longitud }}</td>
                     <td>
