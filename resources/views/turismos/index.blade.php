@@ -16,7 +16,29 @@
     </a>
 </div>
 
-<div class="container" style="max-width: 1200px;">
+<div class="container mb-4" style="max-width: 1200px;">
+    <form method="GET" action="{{ route('turismos.index') }}" class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="categoria" class="col-form-label">Filtrar por Categoría:</label>
+        </div>
+        <div class="col-auto">
+            <select name="categoria" id="categoria" class="form-select">
+                <option value="">-- Todas --</option>
+                @foreach($categorias as $cat)
+                    <option value="{{ $cat }}" {{ request('categoria') == $cat ? 'selected' : '' }}>
+                        {{ $cat }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-filter-circle"></i> Filtrar
+            </button>
+        </div>
+    </form>
+</div>
+
     <table id="tbl_turismo" class="table table-bordered table-striped mx-auto" style="width: 100%;">
         <thead class="table-dark">
             <tr>

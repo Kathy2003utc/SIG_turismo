@@ -12,11 +12,17 @@ class TurismoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $turismos=Turismo::all();
-
-        return view('turismos.index', compact('turismos'));
+        $categoria = $request->get('categoria');
+        $query = Turismo::query();
+        
+        if ($categoria) {
+            $query->where('categoria', $categoria);
+        }
+        $turismos = $query->get();
+        $categorias = Turismo::select('categoria')->distinct()->pluck('categoria');
+        return view('turismos.index', compact('turismos', 'categorias'));
     }
 
     public function mapa()
@@ -55,7 +61,7 @@ class TurismoController extends Controller
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
+            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
         } else {
             $rutaImagen = null;
         }
@@ -119,7 +125,7 @@ class TurismoController extends Controller
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
+            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
             $turismo->imagenes = $rutaImagen;
         }
 
