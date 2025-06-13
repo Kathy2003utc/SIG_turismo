@@ -76,13 +76,14 @@
                             <a href="{{ route('turismos.edit', $turismo->id) }}" class="btn btn-warning btn-sm mb-2">
                                 <i class="bi bi-pencil-square"></i> Editar
                             </a>
-                            <form action="{{ route('turismos.destroy', $turismo->id) }}" method="POST" style="display:inline;">
+                            <form id="form-delete-{{ $turismo->id }}" action="{{ route('turismos.destroy', $turismo->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de eliminar este sitio?')">
+                                <button type="button" class="btn btn-danger btn-sm" onclick="confirmarEliminacion({{ $turismo->id }})">
                                     <i class="bi bi-trash"></i> Eliminar
                                 </button>
                             </form>
+
                         </td>
                     </tr>
                 @endforeach
@@ -99,6 +100,25 @@
           url: 'https://cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json'
       }
   });
+</script>
+
+<script>
+    function confirmarEliminacion(id) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Esta acción no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('form-delete-' + id).submit();
+            }
+        });
+    }
 </script>
 
 <br><br>
