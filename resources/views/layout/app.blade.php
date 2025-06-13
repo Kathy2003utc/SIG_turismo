@@ -183,5 +183,15 @@
 	<script src="{{ asset('js/google-map.js') }}"></script>
 	<script src="{{ asset('js/main.js') }}"></script>
 
+	<style>
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .form-control.error {
+            border: 1px solid red;
+        }
+    </style>
+
 </body>
 </html>

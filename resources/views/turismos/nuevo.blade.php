@@ -8,7 +8,7 @@
             <h4 class="mb-0">Registrar Nuevo Sitio Turístico</h4>
         </div>
         <div class="card-body">
-            <form action="{{ route('turismos.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('turismos.store') }}" method="post" enctype="multipart/form-data" id="frm_turismo">
                 @csrf
 
                 <div class="mb-3">
@@ -76,6 +76,68 @@
         });
     }
 </script>
+
+<script>
+    $(document).ready(function () {
+        $("#frm_turismo").validate({
+            rules: {
+                "nombre": {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 50
+                },
+                "descripcion": {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 255
+                },
+                "categoria": {
+                    required: true,
+                    minlength: 3,
+                    maxlength: 30
+                },
+                "imagenes": {
+                    required: true,
+                    extension: "jpg|jpeg|png|gif"
+                },
+                "latitud": {
+                    required: true
+                },
+                "longitud": {
+                    required: true
+                }
+            },
+            messages: {
+                "nombre": {
+                    required: "Campo obligatorio",
+                    minlength: "Debe tener al menos 3 caracteres",
+                    maxlength: "Nombre muy largo (máx. 50 caracteres)"
+                },
+                "descripcion": {
+                    required: "Campo obligatorio",
+                    minlength: "Debe tener al menos 10 caracteres",
+                    maxlength: "Descripción demasiado larga (máx. 255 caracteres)"
+                },
+                "categoria": {
+                    required: "Ingrese la categoría",
+                    minlength: "Debe tener al menos 3 caracteres",
+                    maxlength: "Categoría muy larga (máx. 30 caracteres)"
+                },
+                "imagenes": {
+                    required: "Debe seleccionar una imagen",
+                    extension: "Solo se permiten archivos JPG, JPEG, PNG o GIF"
+                },
+                "latitud": {
+                    required: "Seleccione una ubicación en el mapa"
+                },
+                "longitud": {
+                    required: "Seleccione una ubicación en el mapa"
+                }
+            }
+        });
+    });
+</script>
+
 
 <script>
     $("#imagenes").fileinput({
