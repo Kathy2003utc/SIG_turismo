@@ -2,7 +2,7 @@
 
 @section('contenido')
 <br>
-<h1>MAPA GLOBAL</h1>
+<h1 class="text-center">MAPA GLOBAL DE PUNTOS TURISTICOS</h1>
 <br>
 <div id="mapa-turismo" style="border : 2px solid black; height:500px; width:100%;">
 
