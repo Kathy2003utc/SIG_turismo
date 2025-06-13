@@ -13,7 +13,7 @@
 
         var mapa = new google.maps.Map(document.getElementById('mapa-turismo'), {
             center: centro,
-            zoom: 12,
+            zoom: 10,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
