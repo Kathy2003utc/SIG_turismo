@@ -46,7 +46,7 @@ class TurismoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+   public function store(Request $request)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
@@ -57,21 +57,21 @@ class TurismoController extends Controller
             'longitud' => 'required',
         ]);
 
-        // Guardar la imagen
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+
+            // Cambiado para que guarde en storage/app/public/imgTurismo sin el prefijo "public/"
+            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
         } else {
             $rutaImagen = null;
         }
 
-        // Crear el sitio turístico
         Turismo::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
             'categoria' => $request->categoria,
-            'imagenes' => $rutaImagen, // Guarda la ruta del archivo, no la URL directa
+            'imagenes' => $rutaImagen, // ahora ruta relativa sin "public/"
             'latitud' => $request->latitud,
             'longitud' => $request->longitud,
         ]);
@@ -114,18 +114,18 @@ class TurismoController extends Controller
 
         $turismo = Turismo::findOrFail($id);
 
-        // Actualizar datos básicos
         $turismo->nombre = $request->nombre;
         $turismo->descripcion = $request->descripcion;
         $turismo->categoria = $request->categoria;
         $turismo->latitud = $request->latitud;
         $turismo->longitud = $request->longitud;
 
-        // Si se carga una nueva imagen, reemplazar la anterior
         if ($request->hasFile('imagenes')) {
             $imagen = $request->file('imagenes');
             $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
-            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+
+            // Guardar imagen sin prefijo "public/"
+            $rutaImagen = $imagen->storeAs('imgTurismo', $nombreImagen, 'public');
             $turismo->imagenes = $rutaImagen;
         }
 
