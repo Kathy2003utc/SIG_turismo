@@ -87,7 +87,9 @@ class TurismoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $turismo = Turismo::findOrFail($id);
+
+        return view('turismos.editar', compact('turismo'));
     }
 
     /**
@@ -95,8 +97,37 @@ class TurismoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'descripcion' => 'required',
+            'categoria' => 'required|string|max:255',
+            'imagenes' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'latitud' => 'required|numeric',
+            'longitud' => 'required|numeric',
+        ]);
+
+        $turismo = Turismo::findOrFail($id);
+
+        // Actualizar datos básicos
+        $turismo->nombre = $request->nombre;
+        $turismo->descripcion = $request->descripcion;
+        $turismo->categoria = $request->categoria;
+        $turismo->latitud = $request->latitud;
+        $turismo->longitud = $request->longitud;
+
+        // Si se carga una nueva imagen, reemplazar la anterior
+        if ($request->hasFile('imagenes')) {
+            $imagen = $request->file('imagenes');
+            $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+            $rutaImagen = $imagen->storeAs('public/imgTurismo', $nombreImagen);
+            $turismo->imagenes = $rutaImagen;
+        }
+
+        $turismo->save();
+
+        return redirect()->route('turismos.index')->with('success', 'Sitio turístico actualizado correctamente.');
     }
+
 
     /**
      * Remove the specified resource from storage.
