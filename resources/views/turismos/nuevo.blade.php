@@ -1,35 +1,60 @@
 @extends('layout.app')
 
 @section('contenido')
-<form action="{{ route('turismos.store') }}" method="post" enctype="multipart/form-data" style="width: 50%; margin: auto; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
-    @csrf
-    <h1 style="text-align: center; color: #333;">Registrar Nuevo Sitio Turístico</h1>
+<br><br><br><br>
+<div class="container mt-4">
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-primary text-white text-center">
+            <h4 class="mb-0">Registrar Nuevo Sitio Turístico</h4>
+        </div>
+        <div class="card-body">
+            <form action="{{ route('turismos.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
 
-    <label for="nombre" style="font-weight: bold;">Nombre:</label><br>
-    <input type="text" name="nombre" id="nombre" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+                <div class="mb-3">
+                    <label for="nombre" class="form-label fw-bold">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
 
-    <label for="descripcion" style="font-weight: bold;">Descripción:</label><br>
-    <textarea name="descripcion" id="descripcion" rows="3" style="width: 100%; padding: 8px; margin-bottom: 10px;"></textarea><br>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+                    <textarea name="descripcion" id="descripcion" rows="3" class="form-control"></textarea>
+                </div>
 
-    <label for="categoria" style="font-weight: bold;">Categoría:</label><br>
-    <input type="text" name="categoria" id="categoria" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+                <div class="mb-3">
+                    <label for="categoria" class="form-label fw-bold">Categoría:</label>
+                    <input type="text" name="categoria" id="categoria" class="form-control">
+                </div>
 
-    <label for="imagenes" style="font-weight: bold;">Imagen:</label><br>
-    <input type="file" name="imagenes" id="imagenes" accept="image/*" style="width: 100%; padding: 8px; margin-bottom: 10px;"><br>
+                <div class="mb-3">
+                    <label for="imagenes" class="form-label fw-bold">Imagen:</label>
+                    <input type="file" name="imagenes" id="imagenes" accept="image/*" class="form-control">
+                </div>
 
+                <div class="mb-3">
+                    <label for="latitud" class="form-label fw-bold">Latitud:</label>
+                    <input type="text" name="latitud" id="latitud" class="form-control bg-light" readonly>
+                </div>
 
-    <label for="latitud" style="font-weight: bold;">Latitud:</label><br>
-    <input type="text" name="latitud" id="latitud" style="width: 100%; padding: 8px; margin-bottom: 10px; background-color: #f0f0f0;"><br>
+                <div class="mb-3">
+                    <label for="longitud" class="form-label fw-bold">Longitud:</label>
+                    <input type="text" name="longitud" id="longitud" class="form-control bg-light" readonly>
+                </div>
 
-    <label for="longitud" style="font-weight: bold;">Longitud:</label><br>
-    <input type="text" name="longitud" id="longitud" style="width: 100%; padding: 8px; margin-bottom: 10px; background-color: #f0f0f0;"><br>
+                <div id="mapa_turismo" class="border" style="height: 250px; margin-bottom: 20px;"></div>
 
-    <div id="mapa_turismo" style="border: 1px solid black; height: 250px; width: 100%; margin-top: 10px; margin-bottom: 20px;"></div>
-
-    <button type="submit" style="background-color: green; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Guardar</button>
-
-    <a href="{{ route('turismos.index') }}" style="margin-left: 20px; text-decoration: none; color: red; font-weight: bold; padding: 10px 20px;">Cancelar</a>
-</form>
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-save"></i> Guardar
+                    </button>
+                    <a href="{{ route('turismos.index') }}" class="btn btn-outline-danger">
+                        <i class="bi bi-x-circle"></i> Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     function initMap() {
@@ -61,5 +86,5 @@
         showClose: false
     });
 </script>
-
+<br><br><br>
 @endsection
