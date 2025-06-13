@@ -1,10 +1,11 @@
 @extends('layout.app')
 
 @section('contenido')
-<br><br><br><br>
+<br><br>
 
 <h1 class="text-center mb-3">Listado de Lugares Turísticos</h1>
-<hr>
+<hr> 
+<br>
 
 <div class="d-flex justify-content-center gap-3 mb-4">
     <a href="{{ route('turismos.create') }}" class="btn btn-primary">
@@ -15,7 +16,7 @@
         <i class="bi bi-map"></i> Ver Mapa Global
     </a>
 </div>
-
+<br><br>
 <div class="container mb-4" style="max-width: 1200px;">
     <div class="row">
         <div class="col-md-4">
@@ -40,8 +41,7 @@
         </div>
     </div>
 </div>
-
-<!-- Contenedor centrado de tabla -->
+<br>
 <div class="d-flex justify-content-center">
     <div class="table-responsive" style="max-width: 1200px;">
         <table id="tbl_turismo" class="table table-bordered table-striped" style="width: 100%;">

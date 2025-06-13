@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('contenido')
-<br><br><br><br>
+<br><br>
 <div class="container mt-4">
     <div class="card shadow mx-auto" style="max-width: 600px;">
         <div class="card-header bg-warning text-white text-center">
