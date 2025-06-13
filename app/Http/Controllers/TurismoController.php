@@ -134,6 +134,8 @@ class TurismoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $turismo = Turismo::findOrFail($id);
+        $turismo->delete();
+        return redirect()->route('turismos.index')->with('success', 'Atraccion eliminada correctamente.');
     }
 }

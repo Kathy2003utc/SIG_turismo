@@ -39,7 +39,10 @@
                         <form action="{{ route('turismos.destroy', $turismo->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Eliminar</button>
+                            <button type="submit" 
+                                style="background-color: #ef4444; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer;">
+                                Eliminar
+                            </button>
                         </form>
                     </td>
                 </tr>
