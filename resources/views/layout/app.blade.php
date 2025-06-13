@@ -75,13 +75,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="ftco-nav">
 				<ul class="navbar-nav ms-auto">
-					<li class="nav-item active"><a href="{{ url('/') }}" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">About</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Destination</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Hotel</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
-				</ul>
+					<li class="nav-item"><a href="{{ route('turismos.index') }}" class="nav-link">Lista de puntos Turisticos</a></li>
 			</div>
 		</div>
 	</nav>
