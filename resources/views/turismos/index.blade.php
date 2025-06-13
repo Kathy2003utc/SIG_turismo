@@ -2,8 +2,9 @@
 
 @section('contenido')
 <br><br><br><br>
-<h1>Listado de Lugares Turísticos</h1>
-
+<h1 class="text-center">Listado de Lugares Turísticos</h1>
+<hr>
+<br><br>
 <a href="{{ route('turismos.create') }}" class="btn btn-primary mb-3">
     <i class="bi bi-plus-circle"></i> Agregar Lugar Turístico
 </a>
@@ -11,7 +12,7 @@
 <a href="{{ url('turismos/mapa') }}" class="btn btn-success mb-3">
     <i class="bi bi-map"></i> Ver Mapa Global
 </a>
-
+<br><br>
 <table id="tbl_turismo" class="table table-bordered table-striped">
     <thead class="table-dark">
         <tr>
@@ -43,6 +44,8 @@
                     <a href="{{ route('turismos.edit', $turismo->id) }}" class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil-square"></i> Editar
                     </a>
+
+                    <br><br>
 
                     <form action="{{ route('turismos.destroy', $turismo->id) }}" method="POST" style="display:inline;">
                         @csrf
