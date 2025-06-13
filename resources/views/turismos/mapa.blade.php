@@ -2,27 +2,23 @@
 
 @section('contenido')
 <br>
-<h1 class="text-center">MAPA GLOBAL DE PUNTOS TURISTICOS</h1>
+<h1 class="text-center">MAPA GLOBAL DE PUNTOS TURÍSTICOS</h1>
 <br>
-<div id="mapa-turismo" style="border : 2px solid black; height:500px; width:100%;">
 
-</div>
+<div id="mapa-turismo" style="border: 2px solid #ccc; height: 500px; width: 100%; border-radius: 10px;"></div>
 
 <script type="text/javascript">
     function initMap() {
-        var latitud_longitud = new google.maps.LatLng(-0.9374805, -78.6161327);
+        var centro = new google.maps.LatLng(-0.9374805, -78.6161327);
 
-        var mapa = new google.maps.Map(
-            document.getElementById('mapa-turismo'),
-            {
-                center: latitud_longitud,
-                zoom: 12,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            }
-        );
+        var mapa = new google.maps.Map(document.getElementById('mapa-turismo'), {
+            center: centro,
+            zoom: 12,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
         @foreach($turismos as $turismo)
-            (function() {
+            (function () {
                 var coordenada = new google.maps.LatLng({{ $turismo->latitud }}, {{ $turismo->longitud }});
 
                 var marcador = new google.maps.Marker({
@@ -36,12 +32,15 @@
                 });
 
                 var contenido = `
-                    <div style="font-family:sans-serif;">
-                        <h5>{{ $turismo->nombre }}</h5>
-                        <p><strong>Categoría:</strong> {{ $turismo->categoria }}</p>
-                        <p>{{ $turismo->descripcion }}</p>
+                    <div style="font-family: 'Segoe UI', sans-serif; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 15px; max-width: 300px;">
+                        <h5 class="text-center" style="color: #2c3e50; margin-bottom: 5px; font-size: 20px;">{{ $turismo->nombre }}</h5>
+                        <p style="margin: 5px 0 10px; font-size: 14px; color: #555;">{{ $turismo->descripcion }}</p>
+                        <p style="margin: 3px 0;"><strong>Categoría:</strong> {{ $turismo->categoria }}</p>
+                        <p style="margin: 3px 0;"><strong>Coordenadas:</strong> {{ $turismo->latitud }}, {{ $turismo->longitud }}</p>
                         @if($turismo->imagenes)
-                            <img src="{{ Storage::url($turismo->imagenes) }}" alt="Imagen" width="150">
+                            <img src="{{ asset('storage/' . $turismo->imagenes) }}" alt="Imagen del lugar" style="width: 100%; max-height: 150px; object-fit: cover; border-radius: 8px;">
+                        @else
+                            <p style="color: #888;"><em>Imagen no disponible</em></p>
                         @endif
                     </div>
                 `;
@@ -50,15 +49,11 @@
                     content: contenido
                 });
 
-                marcador.addListener('click', function() {
+                marcador.addListener('click', function () {
                     infoWindow.open(mapa, marcador);
                 });
             })();
         @endforeach
     }
 </script>
-
-
-
-
 @endsection
